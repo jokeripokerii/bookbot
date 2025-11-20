@@ -1,3 +1,4 @@
+import sys
 #Open the chosen text file
 def get_book_text(filepath):
     with open(filepath) as f:
@@ -5,13 +6,13 @@ def get_book_text(filepath):
 
 #Counts the number of words in the whole Frankenstein
 def get_num_words():
-    teksti = get_book_text("books/frankenstein.txt")
+    teksti = get_book_text(sys.argv[1])
     sanat = len(teksti.split())
     print(f"Found {sanat} total words")
 
 #Creates a dictionary of how many of each symbol there is
 def letter_calc():
-    teksti = get_book_text("books/frankenstein.txt")
+    teksti = get_book_text(sys.argv[1])
     letter_dic = {}
     for letter in teksti.lower():
         if letter not in letter_dic:
@@ -20,7 +21,7 @@ def letter_calc():
             letter_dic[letter] += 1
     return letter_dic
 
-#Creates a new cleaned list of dictionaries
+#Creates a new cleaned alphabet only list of dictionaries
 def setup(items):
     dic_list = []
     for i in items:
@@ -35,7 +36,7 @@ def setup(items):
 def sort_on(esineet):
     return esineet["num"]
 
-#Sorts the dictionaries by count and prints results
+#Sorts the new dictionaries by count and prints results
 def kaunistus(kaunistettava):
     kaunistettava.sort(reverse = True, key=sort_on)
     for e in kaunistettava:
